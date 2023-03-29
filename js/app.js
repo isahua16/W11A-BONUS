@@ -2,8 +2,10 @@ function add_to_cart(event)
 {
     for(let i = 0; i < products.length; i++)
     {
+        //This function loops over the products array to find a match betweet the selected item's attribute name and a product's name in the array.
         if(products[i][`name`] === event[`currentTarget`].getAttribute(`product`))
         {
+            //When that happens, push the object to the cart array and set a cookie.
             user_cart.push(products[i]);
             let user_cart_cookie = JSON.stringify(user_cart);
             Cookies.set(`user_cart`, user_cart_cookie);
@@ -12,20 +14,22 @@ function add_to_cart(event)
     }
 }
 
+//Create an empty array that will contain the user's cart items
 let user_cart = [];
 if (Cookies.get(`user_cart`) !== undefined)
 {
+    //if the user has already selected items, take them from the cookie jar and add them to the array.
     user_cart = JSON.parse(Cookies.get(`user_cart`));
 }
 
-
+// Add event listeners to the add to cart buttons
 let add_to_cart_buttons = document.querySelectorAll(`.add_cart`);
 for(let i = 0; i < add_to_cart_buttons.length; i++)
 {
     add_to_cart_buttons[i].addEventListener(`click`, add_to_cart);
 }
 
-
+//An array of objects
 let products = [
     {
         name: `Nike Air Zoom Pegasus 38`,
