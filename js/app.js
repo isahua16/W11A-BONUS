@@ -12,10 +12,14 @@ function add_to_cart(event)
     }
 }
 
-
 let user_cart = [];
+if (Cookies.get(`user_cart`) !== undefined)
+{
+    user_cart = JSON.parse(Cookies.get(`user_cart`));
+}
 
-let add_to_cart_buttons = document.querySelectorAll(`.add_cart`)
+
+let add_to_cart_buttons = document.querySelectorAll(`.add_cart`);
 for(let i = 0; i < add_to_cart_buttons.length; i++)
 {
     add_to_cart_buttons[i].addEventListener(`click`, add_to_cart);
